@@ -3,40 +3,34 @@ package com.mycompany.dao.main;
 import com.mycompany.dao.dao.*;
 import com.mycompany.dao.servicio.ContadorService;
 import com.mycompany.dao.modelo.ContadorAgua;
-import com.mycompany.dao.util.ExploradorUtil;
-
+/**
+ * CAPA: VISTA / ENTRY POINT (MVC)
+ * Punto de entrada del sistema que simula la interacción del usuario.
+ * Demuestra el flujo completo: Captura -> Validación -> Persistencia -> Logging.
+ */
 public class Main {
     public static void main(String[] args) {
         try {
-            // Inicialización (DIP: Inyectamos la implementación en el servicio)
+            // Inicializamos el sistema (SOLID: Inyección de dependencias)
             ContadorDAO dao = new ContadorDAOImpl();
             ContadorService servicio = new ContadorService(dao);
 
-            String idPrueba = "CONT-001";
+            String idTest = "PRUEBA-999";
 
-            // 1. Crear un contador inicial directamente en el DAO
-            System.out.println("Creando contador inicial...");
-            dao.guardar(new ContadorAgua(idPrueba, "Sector Norte", 0.0, 0));
+            // 1. INSERTAR UN REGISTRO INICIAL
+            System.out.println("--- PASO 1: Insertando registro inicial ---");
+            ContadorAgua nuevo = new ContadorAgua(idTest, "Sede Central", 0.0, 0);
+            dao.guardar(nuevo);
+            System.out.println("Registro guardado exitosamente.");
 
-            // 2. Probar Restricción #3 (Máximo 2 actualizaciones)
-            System.out.println("Ejecutando actualización 1...");
-            servicio.actualizarUbicacion(idPrueba, "Sector Sur");
-            
-            System.out.println("Ejecutando actualización 2...");
-            servicio.actualizarUbicacion(idPrueba, "Sector Centro");
-
-            // 3. Esta debe fallar (Tercera actualización)
-            System.out.println("Intentando actualización 3 (Debe fallar)...");
-            servicio.actualizarUbicacion(idPrueba, "Sector Occidente");
+            // 2. INTENTAR ACTUALIZAR CON CAMPOS NULL (Esto debe disparar la excepción)
+            System.out.println("\n--- PASO 2: Intentando actualizar con ubicación NULL ---");
+            // El servicio validará el null, lanzará la excepción y FileLogger creará el archivo con el timestamp
+            servicio.actualizarUbicacion(idTest, null); 
 
         } catch (Exception e) {
-            System.err.println("Capturado en Main: " + e.getMessage());
-        } finally {
-            // 4. Mostrar Restricción #5 al final
-            ExploradorUtil.mostrarPropiedadesArchivo("datos_contadores.txt");
-            
-            // También mostramos el log de errores si existe
-            ExploradorUtil.mostrarPropiedadesArchivo("error_sistema.log");
+            System.err.println("\n[CAPTURA EN MAIN]: Se detectó el error esperado -> " + e.getMessage());
+            System.out.println("Revisa tu carpeta del proyecto, deberías ver un archivo 'log20260326...log'");
         }
     }
 }

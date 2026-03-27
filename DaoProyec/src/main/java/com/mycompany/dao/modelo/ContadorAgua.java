@@ -4,6 +4,11 @@ package com.mycompany.dao.modelo;
  * Entidad ContadorAgua - Representa el medidor físico.
  * Aplicando Restricción #1: El ID es inmutable.
  */
+/**
+ * CAPA: MODELO (MVC)
+ * Esta clase representa la entidad de negocio.
+ * RESTRICCIÓN #1: El ID es 'final' para garantizar su inmutabilidad.
+ */
 public class ContadorAgua {
     // El modificador 'final' asegura que el ID no cambie después de creado (R1)
     private final String idContador; 

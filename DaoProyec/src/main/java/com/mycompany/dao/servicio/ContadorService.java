@@ -4,7 +4,12 @@ import com.mycompany.dao.dao.ContadorDAO;
 import com.mycompany.dao.modelo.ContadorAgua;
 import com.mycompany.dao.util.FileLogger;
 import java.io.IOException;
-
+/**
+ * CAPA: SERVICIOS / CONTROLADOR (MVC)
+ * Aquí se centraliza la lógica de negocio y las validaciones.
+ * RESTRICCIÓN #2: Validación de datos no nulos.
+ * RESTRICCIÓN #3: Límite de 2 actualizaciones máximo.
+ */
 public class ContadorService {
     private final ContadorDAO dao; // SOLID: DIP (Dependemos de la interfaz)
     private static final int LIMITE_CAMBIOS = 2; // Restricción #3

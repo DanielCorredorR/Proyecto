@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import java.util.stream.Collectors;
-
+/**
+ * CAPA: ACCESO A DATOS (DAO - MVC)
+ * Implementación de persistencia en archivo plano (.txt).
+ * Sigue el principio SOLID de Inversión de Dependencias (DIP).
+ */
 public class ContadorDAOImpl implements ContadorDAO {
     private final Path archivo = Paths.get("datos_contadores.txt");
 

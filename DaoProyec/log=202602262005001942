@@ -1,0 +1,1 @@
+[2026-03-26 20:13:53] ERROR: Fallo al actualizar ubicación | TIPO: IllegalStateException | MSG: Límite de actualizaciones (2) alcanzado para el ID: CONT-001 | DATOS: CONT-001|Sector Centro|0.0|2
