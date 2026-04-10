@@ -1,0 +1,1 @@
+[2026-04-10 13:56:14.756] ERROR: Error en actualización GUI | TIPO: IllegalStateException | MSG: Límite de cambios (2) alcanzado para este contador. | DATOS: CONT-001|Sector Centro|0.0|2

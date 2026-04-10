@@ -1,2 +1,2 @@
 CONT-001|Sector Centro|0.0|2
-PRUEBA-999|Sede Central|0.0|0
+PRUEBA-999|Sector Sur|0.0|1
