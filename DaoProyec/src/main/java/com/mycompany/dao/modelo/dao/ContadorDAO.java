@@ -1,4 +1,4 @@
-package com.mycompany.dao.dao;
+package com.mycompany.dao.modelo.dao;
 
 import com.mycompany.dao.modelo.ContadorAgua;
 import java.io.IOException;
