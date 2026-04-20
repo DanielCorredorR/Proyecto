@@ -26,4 +26,36 @@ public class ContadorAguaTest {
         ContadorAgua c = new ContadorAgua("1", "A", 0, 0);
         assertEquals(0, c.getActualizaciones());
     }
+    @Test
+    @DisplayName("4. Debería incrementar el contador de actualizaciones")
+    void testIncrementarActualizacion() {
+        ContadorAgua c = new ContadorAgua("1", "A", 0, 0);
+        c.incrementarActualizacion();
+        assertEquals(1, c.getActualizaciones());
+    }
+
+    @Test
+    @DisplayName("5. Debería cambiar la ubicación correctamente")
+    void testSetUbicacion() {
+        ContadorAgua c = new ContadorAgua("1", "Antigua", 0, 0);
+        c.setUbicacion("Nueva");
+        assertEquals("Nueva", c.getUbicacion());
+    }
+
+    @Test
+    @DisplayName("6. Debería actualizar la lectura actual")
+    void testSetLectura() {
+        ContadorAgua c = new ContadorAgua("1", "A", 10.5, 0);
+        c.setLecturaActual(20.8);
+        assertEquals(20.8, c.getLecturaActual());
+    }
+
+    @Test
+    @DisplayName("7. Debería soportar múltiples incrementos de actualización")
+    void testMultiplesIncrementos() {
+        ContadorAgua c = new ContadorAgua("1", "A", 0, 0);
+        c.incrementarActualizacion();
+        c.incrementarActualizacion();
+        assertEquals(2, c.getActualizaciones());
+    }
 }
