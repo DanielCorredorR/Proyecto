@@ -58,4 +58,27 @@ public class ContadorAguaTest {
         c.incrementarActualizacion();
         assertEquals(2, c.getActualizaciones());
     }
+    @Test
+    @DisplayName("8. El formato toString debe ser el esperado para el archivo plano")
+    void testToStringFormat() {
+        ContadorAgua c = new ContadorAgua("C1", "Ubi", 50.0, 1);
+        String esperado = "C1|Ubi|50.0|1";
+        assertEquals(esperado, c.toString());
+    }
+
+    @Test
+    @DisplayName("9. Debería manejar lecturas de valor cero")
+    void testLecturaCero() {
+        ContadorAgua c = new ContadorAgua("1", "A", 0.0, 0);
+        assertEquals(0.0, c.getLecturaActual());
+    }
+
+    @Test
+    @DisplayName("10. El ID debe permanecer igual tras cambiar otros campos")
+    void testInmutabilidadId() {
+        ContadorAgua c = new ContadorAgua("ORIGINAL", "A", 0, 0);
+        c.setUbicacion("B");
+        c.setLecturaActual(100);
+        assertEquals("ORIGINAL", c.getIdContador());
+    }
 }
